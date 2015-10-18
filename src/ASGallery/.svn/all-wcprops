@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/acz/!svn/ver/74/trunk/ACZ/src/ASGallery
+END
+ALAssetAdapter.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/acz/!svn/ver/64/trunk/ACZ/src/ASGallery/ALAssetAdapter.h
+END
+playButton.png
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/acz/!svn/ver/64/trunk/ACZ/src/ASGallery/playButton.png
+END
+ASGalleryPage.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/acz/!svn/ver/64/trunk/ACZ/src/ASGallery/ASGalleryPage.h
+END
+ASImageScrollView.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/acz/!svn/ver/64/trunk/ACZ/src/ASGallery/ASImageScrollView.h
+END
+ALAssetAdapter.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/acz/!svn/ver/64/trunk/ACZ/src/ASGallery/ALAssetAdapter.m
+END
+ASGalleryViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/acz/!svn/ver/64/trunk/ACZ/src/ASGallery/ASGalleryViewController.h
+END
+ASGalleryPage.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/acz/!svn/ver/64/trunk/ACZ/src/ASGallery/ASGalleryPage.m
+END
+ASImageScrollView.m
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/acz/!svn/ver/98/trunk/ACZ/src/ASGallery/ASImageScrollView.m
+END
+ASGalleryViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/acz/!svn/ver/76/trunk/ACZ/src/ASGallery/ASGalleryViewController.m
+END
+playButton@2x.png
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/acz/!svn/ver/64/trunk/ACZ/src/ASGallery/playButton@2x.png
+END

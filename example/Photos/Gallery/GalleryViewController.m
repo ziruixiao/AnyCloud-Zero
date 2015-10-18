@@ -1,0 +1,614 @@
+//
+//  GalleryViewController.m
+//  AnyCloudZero
+//
+//  Created by Felix Xiao on 6/11/13.
+//  Copyright (c) 2013 Felix Xiao. All rights reserved.
+//
+
+#import "GalleryViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIViewController+JASidePanel.h"
+#import "MenuViewController.h"
+#import "NSURLConnection+Tag.h"
+#import "LeftViewController.h"
+#import "UIView+Genie.h"
+#import "UploadOperation.h"
+#import "UIView+Badge.h"
+#import "TutorialViewController.h"
+
+@interface GalleryViewController ()<ASGalleryViewControllerDelegate>
+
+@end
+
+@implementation GalleryViewController
+@synthesize appDelegate,currentImage,urlToProcess,sources,spinnerView,toolPhoto;
+
+- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.appDelegate = [[UIApplication sharedApplication] delegate];
+    [self.appDelegate.uploadQueue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    [self addGestures];
+    NSArray* reversedArray = [[self.assets reverseObjectEnumerator] allObjects];
+    self.assets = [reversedArray mutableCopy];
+    
+    self.selectedActions = [NSMutableArray array];
+    [self updateTitle];
+    //perhaps show spinner here so that it's faster?
+    self.toolPhoto = [[Photo alloc] init];
+
+    UINavigationBar *myNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
+    myNavBar.tag = 12345;
+   
+    
+   
+
+    //myNavBar.barTintColor = [UIColor blackColor];
+    
+    UIButton *menuBarButton  = [UIButton buttonWithType:UIButtonTypeCustom];
+    [menuBarButton setImage:[UIImage imageNamed:@"menubars.png"] forState:UIControlStateNormal];
+    menuBarButton.tag = 1011;
+    CGRect menuBarButtonFrame = CGRectMake(0, 0, 44, 44);
+    [menuBarButton setFrame:menuBarButtonFrame];
+    [menuBarButton addTarget:self action:@selector(showMenuPanel:) forControlEvents:UIControlEventTouchUpInside];
+    [myNavBar addSubview:menuBarButton];
+    
+    UILabel *centerTitleLabel = [[UILabel alloc] init];
+    centerTitleLabel.text = self.title;
+    centerTitleLabel.textColor = [UIColor blackColor];
+    centerTitleLabel.backgroundColor = [UIColor clearColor];
+    centerTitleLabel.textAlignment = NSTextAlignmentCenter;
+    centerTitleLabel.tag = 2000;
+    //centerTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    
+    self.spinnerView = [[UIImageView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width-44,0,44,44)];
+    self.spinnerView.animationImages = [NSArray arrayWithObjects:
+                                         [UIImage imageNamed:@"0.gif"],
+                                         [UIImage imageNamed:@"1.gif"],
+                                         [UIImage imageNamed:@"2.gif"],
+                                         [UIImage imageNamed:@"3.gif"],
+                                         [UIImage imageNamed:@"4.gif"], nil];
+    self.spinnerView.animationDuration = 0.5f;
+    self.spinnerView.tag = 998;
+    self.spinnerView.animationRepeatCount = 0;
+    //self.spinnerView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    
+    
+    if (!([self.sources containsObject:@"hide"]||[self.sources containsObject:@"dispositioned"])) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [self.assets count];
+    }
+    
+    self.spinnerView.badge.outlineWidth = 2.0;
+    self.spinnerView.badge.badgeColor = [UIColor orangeColor];
+    self.spinnerView.badge.placement = kBadgePlacementUpperLeft;
+    self.spinnerView.badge.badgeValue = self.appDelegate.uploadQueue.operationCount;
+    
+     myNavBar.translatesAutoresizingMaskIntoConstraints = NO;
+    [myNavBar addSubview:centerTitleLabel];
+    [myNavBar addSubview: self.spinnerView];
+    [self.view addSubview:myNavBar];
+    
+    //myNavBar Constraints
+    NSLayoutConstraint *myNavBarTopConstraint = [NSLayoutConstraint
+                                                  constraintWithItem:myNavBar attribute:NSLayoutAttributeTop
+                                                  relatedBy:NSLayoutRelationEqual toItem:self.view
+                                                  attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0f];
+    NSLayoutConstraint *myNavBarLeftConstraint = [NSLayoutConstraint
+                                                   constraintWithItem:myNavBar attribute:NSLayoutAttributeLeft
+                                                   relatedBy:NSLayoutRelationEqual toItem:self.view attribute:
+                                                   NSLayoutAttributeLeft multiplier:1.0 constant:0.0f];
+    NSLayoutConstraint *myNavBarRightConstraint = [NSLayoutConstraint
+                                                    constraintWithItem:myNavBar attribute:NSLayoutAttributeRight
+                                                    relatedBy:NSLayoutRelationEqual toItem:self.view attribute:
+                                                    NSLayoutAttributeRight multiplier:1.0 constant:0.0f];
+    [self.view addConstraints:@[myNavBarTopConstraint,myNavBarLeftConstraint,myNavBarRightConstraint]];
+    [self changeFrames];
+    
+
+}
+
+- (IBAction)showMenuPanel:(id)sender
+{
+
+    if (self.sidePanelController.state == JASidePanelCenterVisible) {
+        [self.sidePanelController showLeftPanelAnimated:YES];
+        [((LeftViewController*)self.sidePanelController.leftPanel).tableView reloadData];
+        for (UIView *myView in self.view.subviews) {
+            if ([myView isKindOfClass:[UIScrollView class]]) {
+                myView.userInteractionEnabled = NO;
+            }
+        }
+
+    }
+    else {
+        [self.sidePanelController showCenterPanelAnimated:YES];
+        for (UIView *myView in self.view.subviews) {
+            if ([myView isKindOfClass:[UIScrollView class]]) {
+                myView.userInteractionEnabled = YES;
+            }
+        }
+
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
+{
+    
+    if (object == self.appDelegate.uploadQueue && [keyPath isEqualToString:@"operationCount"]) {
+        
+        self.spinnerView.badge.badgeValue = self.appDelegate.uploadQueue.operationCount;
+        
+        NSLog(@"Upload queue contains %i",self.appDelegate.uploadQueue.operationCount);
+        if (self.appDelegate.uploadQueue.operationCount > 0) {
+            [self.spinnerView startAnimating];
+        }
+        if (self.appDelegate.uploadQueue.operationCount == 0) {
+            [self.spinnerView stopAnimating];
+            // Do something here when your queue has completed
+
+        }
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object
+                               change:change context:context];
+    }
+    
+}
+
+#pragma mark Gesture Recognizer Associated Methods
+- (void)addGestures
+{
+
+        
+    self.buttonDisablesGestures  = YES;
+    int buttonCount = 0;
+    
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showGestureForTapRecognizer:)];
+    [tap setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:tap];
+    
+    if ([self.assets count]==0) {
+        NSLog(@"There are no photos in this selected gallery.");
+        
+        for (UIButton *buttonToRemove in self.view.subviews) {
+            if (buttonToRemove.tag>98 && buttonToRemove.tag < 107)
+                [buttonToRemove removeFromSuperview];
+        }
+        self.title = @"AnyCloud";
+        
+        UIImageView *zeroImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"zero.png"]];
+        zeroImage.frame = CGRectMake(0,70,[[UIScreen mainScreen] bounds].size.width,[[UIScreen mainScreen] bounds].size.height-70);
+        
+        UIButton *zeroTweetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [zeroTweetButton setBackgroundImage:[UIImage imageNamed:@"zero_twitter.png"]
+                            forState:UIControlStateNormal];
+        [zeroTweetButton addTarget:self.sidePanelController action:@selector(sendTweet:) forControlEvents:UIControlEventTouchUpInside];
+        
+        zeroTweetButton.frame = CGRectMake(30,[[UIScreen mainScreen] bounds].size.height-140,100,40);
+        zeroTweetButton.titleLabel.text = @"Tweet About It";
+        zeroTweetButton.backgroundColor = [UIColor whiteColor];
+        zeroTweetButton.tag = 991;
+        
+        UIButton *zeroFBButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [zeroFBButton setBackgroundImage:[UIImage imageNamed:@"zero_FB.png"]
+                            forState:UIControlStateNormal];
+        [zeroFBButton addTarget:self.sidePanelController action:@selector(sendFacebook:) forControlEvents:UIControlEventTouchUpInside];
+        zeroFBButton.frame = CGRectMake(190,[[UIScreen mainScreen] bounds].size.height-140,100,40);
+        zeroFBButton.titleLabel.text = @"Facebook Post";
+        zeroFBButton.backgroundColor = [UIColor whiteColor];
+        zeroFBButton.tag = 992;
+        
+        [self.view addSubview:zeroImage];
+        [self.view addSubview:zeroTweetButton];
+        [self.view addSubview:zeroFBButton];
+        
+    } else if ([sources containsObject:@"hide"])
+    {
+        for (UIButton *buttonToRemove in self.view.subviews) {
+            if (buttonToRemove.tag>99 && buttonToRemove.tag < 107)
+                [buttonToRemove removeFromSuperview];
+        }
+        
+        //UNHIDE BUTTON TAG = 99
+        UIButton *buttonHide = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonHide setImage:[UIImage imageNamed:@"unhide_circle_A.png"] forState:UIControlStateNormal];
+        [buttonHide setImage:[UIImage imageNamed:@"unhide_circle_B.png"] forState:UIControlStateHighlighted];
+        [buttonHide addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        buttonHide.adjustsImageWhenHighlighted = NO;
+        buttonHide.tag = 99;
+        buttonHide.alpha = 0.7;
+        buttonHide.clipsToBounds = YES;
+        
+        buttonHide.layer.cornerRadius = 50;//half of the width
+        
+        //constraints for buttonHide
+        
+        [self.view addSubview:buttonHide];
+        
+        
+        
+    }
+    else {
+        
+    //HIDE BUTTON TAG = 100
+    UIButton *buttonHide = [UIButton buttonWithType:UIButtonTypeCustom];
+    [buttonHide setImage:[UIImage imageNamed:@"trash_circle_A.png"] forState:UIControlStateNormal];
+    [buttonHide setImage:[UIImage imageNamed:@"trash_circle_B.png"] forState:UIControlStateHighlighted];
+    [buttonHide addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    buttonHide.adjustsImageWhenHighlighted = NO;
+    buttonHide.tag = 100;
+    buttonHide.alpha = 0.7;
+    buttonHide.clipsToBounds = YES;
+    
+    buttonHide.layer.cornerRadius = 50;//half of the width
+    
+
+        [self.view addSubview:buttonHide];
+        
+
+    
+        CGRect topButtonFrame;
+        
+        if ([[self.appDelegate.myDispositions allKeys] containsObject:@"Facebook"]) {
+    //FACEBOOK BUTTON TAG = 101
+    UIButton *buttonFB = [UIButton buttonWithType:UIButtonTypeCustom];
+            topButtonFrame = CGRectMake([[UIScreen mainScreen] bounds].size.width-105*((buttonCount%3)+1),70+105*(floor(buttonCount/3.0)),100,100);
+            buttonFB.frame = topButtonFrame;
+            buttonCount++;
+    [buttonFB setImage:[UIImage imageNamed:@"facebook_circle_A.png"] forState:UIControlStateNormal];
+    [buttonFB setImage:[UIImage imageNamed:@"facebook_circle_B.png"] forState:UIControlStateHighlighted];
+    [buttonFB addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    buttonFB.adjustsImageWhenHighlighted = NO;
+    buttonFB.tag = 101;
+    buttonFB.alpha = 0.7;
+    
+    
+    buttonFB.clipsToBounds = YES;
+    
+    buttonFB.layer.cornerRadius = 50;//half of the width
+    
+    [self.view addSubview:buttonFB];
+            
+        }
+        
+        if ([[self.appDelegate.myDispositions allKeys] containsObject:@"Dropbox"]) {
+    //DROPBOX BUTTON TAG = 102;
+    UIButton *buttonDB = [UIButton buttonWithType:UIButtonTypeCustom];
+    [buttonDB setImage:[UIImage imageNamed:@"dropbox_circle_A.png"] forState:UIControlStateNormal];
+    [buttonDB setImage:[UIImage imageNamed:@"dropbox_circle_B.png"] forState:UIControlStateHighlighted];
+    [buttonDB addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    buttonDB.adjustsImageWhenHighlighted = NO;
+    buttonDB.tag = 102;
+    buttonDB.alpha = 0.7;
+         
+            buttonCount++;
+    buttonDB.clipsToBounds = YES;
+    
+    buttonDB.layer.cornerRadius = 50;//half of the width
+    
+    [self.view addSubview:buttonDB];
+            
+        }
+        if ([[self.appDelegate.myDispositions allKeys] containsObject:@"Flickr"]) {
+        //FLICKR BUTTON TAG = 103;
+        UIButton *buttonFR = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonFR setImage:[UIImage imageNamed:@"flickr_circle_A.png"] forState:UIControlStateNormal];
+        [buttonFR setImage:[UIImage imageNamed:@"flickr_circle_B.png"] forState:UIControlStateHighlighted];
+        [buttonFR addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        buttonFR.adjustsImageWhenHighlighted = NO;
+        buttonFR.tag = 103;
+        buttonFR.alpha = 0.7;
+       
+            buttonCount++;
+        buttonFR.clipsToBounds = YES;
+        
+        buttonFR.layer.cornerRadius = 50;//half of the width
+        
+        [self.view addSubview:buttonFR];
+        }
+        
+        if ([[self.appDelegate.myDispositions allKeys] containsObject:@"Shutterfly"]) {
+        //SHUTTERFLY BUTTON TAG = 104;
+        UIButton *buttonSF = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonSF setImage:[UIImage imageNamed:@"shutterfly_circle_A.png"] forState:UIControlStateNormal];
+        [buttonSF setImage:[UIImage imageNamed:@"shutterfly_circle_B.png"] forState:UIControlStateHighlighted];
+        [buttonSF addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        buttonSF.adjustsImageWhenHighlighted = NO;
+        buttonSF.tag = 104;
+        buttonSF.alpha = 0.7;
+      
+            buttonCount++;
+        buttonSF.clipsToBounds = YES;
+        
+        buttonSF.layer.cornerRadius = 50;//half of the width
+        
+        [self.view addSubview:buttonSF];
+        }
+        
+        if ([[self.appDelegate.myDispositions allKeys] containsObject:@"Snapfish"]) {
+        //SNAPFISH BUTTON TAG = 105;
+        UIButton *buttonSN = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonSN setImage:[UIImage imageNamed:@"snapfish_circle_A.png"] forState:UIControlStateNormal];
+        [buttonSN setImage:[UIImage imageNamed:@"snapfish_circle_B.png"] forState:UIControlStateHighlighted];
+        [buttonSN addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        buttonSN.adjustsImageWhenHighlighted = NO;
+        buttonSN.tag = 105;
+        buttonSN.alpha = 0.7;
+         
+            buttonCount++;
+        buttonSN.clipsToBounds = YES;
+        
+        buttonSN.layer.cornerRadius = 50;//half of the width
+        
+        [self.view addSubview:buttonSN];
+        }
+        
+        if ([[self.appDelegate.myDispositions allKeys] containsObject:@"SmugMug"]) {
+        //SMUGMUG BUTTON TAG = 106;
+        UIButton *buttonSM = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonSM setImage:[UIImage imageNamed:@"smugmug_circle_A.png"] forState:UIControlStateNormal];
+        [buttonSM setImage:[UIImage imageNamed:@"smugmug_circle_B.png"] forState:UIControlStateHighlighted];
+        [buttonSM addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        buttonSM.adjustsImageWhenHighlighted = NO;
+        buttonSM.tag = 106;
+        buttonSM.alpha = 0.7;
+         
+            buttonCount++;
+        buttonSM.clipsToBounds = YES;
+        
+        buttonSM.layer.cornerRadius = 50;//half of the width
+        
+        [self.view addSubview:buttonSM];
+        }
+    }
+    [self changeFrames];
+}
+
+- (void)changeFrames
+{
+    
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    if ((orientation == 0) || (orientation == UIInterfaceOrientationPortrait)) {
+        //nav bar title and spinner view
+        [self.view viewWithTag:2000].frame = CGRectMake(0, 7, [[UIScreen mainScreen] bounds].size.width, 30);
+        [self.view viewWithTag:998].frame = CGRectMake([[UIScreen mainScreen] bounds].size.width-44,0,44,44);
+        
+        //draw portrait buttons
+        int buttonsDrawn = 0;
+        for (UIButton *myButton in self.view.subviews) {
+            if (myButton.tag > 100 && myButton.tag < 107) { //top buttons
+                myButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width-105*((buttonsDrawn%3)+1),70+105*(floor(buttonsDrawn/3.0)),100,100);
+                buttonsDrawn++;
+            } else if (myButton.tag > 98 && myButton.tag < 101) { //bottom buttons
+                myButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width/2-50,[[UIScreen mainScreen] bounds].size.height-100-30,100,100);
+            }
+        }
+        
+    } else if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
+        //nav bar title and spinner view
+        [self.view viewWithTag:2000].frame = CGRectMake(0, 7, [[UIScreen mainScreen] bounds].size.height, 30);
+        [self.view viewWithTag:998].frame = CGRectMake([[UIScreen mainScreen] bounds].size.height-44,0,44,44);
+        
+        //draw landscape buttons
+        int buttonsDrawn = 0;
+        
+        for (UIButton *myButton in self.view.subviews) {
+            if (myButton.tag > 98 && myButton.tag < 101) { //bottom buttons
+                myButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.height-100,[[UIScreen mainScreen] bounds].size.width-100,90,90);
+            } else if (myButton.tag > 100 && myButton.tag < 107) { //top buttons
+                myButton.frame = CGRectMake(10+105*(buttonsDrawn/3),50+90*(buttonsDrawn%3),90,90);
+                buttonsDrawn++;
+            }
+        }
+    }
+
+}
+
+- (IBAction)buttonClick:(id)sender
+{
+    if (self.selectedIndex > [self.assets count]-1) {
+        
+    } else {
+        if ([self.assets count]<1) return;
+        self.buttonDisablesGestures = YES;
+        self.urlToProcess = self.currentAssetURL;
+        UIButton *actionButton = (UIButton*)sender;
+    
+        [self.assets removeObjectAtIndex:self.selectedIndex];
+        [self reloadData];
+        Photo *tempPhoto = [Photo alloc];
+        tempPhoto.photoURL = [NSString stringWithFormat:@"%@",self.urlToProcess];
+        
+        
+          
+          if (actionButton.tag==99) { //Unhide logo
+              [tempPhoto updatePhoto:tempPhoto inField:@"category" toNew:@"none" ifInt:-1];
+          } else if (actionButton.tag==100) { //Hide logo
+              [tempPhoto updatePhoto:tempPhoto inField:@"category" toNew:@"hide" ifInt:-1];
+          } else {
+              
+              if (actionButton.tag==101) { //Facebook logo
+                  if ([self askForPublishPermissions]) {
+                      [tempPhoto updatePhoto:tempPhoto inField:@"category" toNew:@"Facebook" ifInt:-1];
+                      UploadOperation *operation = [[UploadOperation alloc] initWithPhotoData:[NSString stringWithFormat:@"Facebook|%@",self.urlToProcess]];
+                      
+                      [self.appDelegate.uploadQueue addOperation:operation];
+                  }
+              } else if (actionButton.tag==102) { //Dropbox logo
+                  [tempPhoto updatePhoto:tempPhoto inField:@"category" toNew:@"Dropbox" ifInt:-1];
+                  UploadOperation *operation = [[UploadOperation alloc] initWithPhotoData:[NSString stringWithFormat:@"Dropbox|%@",self.urlToProcess]];
+                  
+                  [self.appDelegate.uploadQueue addOperation:operation];
+              } else if (actionButton.tag==103) { //Flickr logo
+                  [tempPhoto updatePhoto:tempPhoto inField:@"category" toNew:@"Flickr" ifInt:-1];
+                  UploadOperation *operation = [[UploadOperation alloc] initWithPhotoData:[NSString stringWithFormat:@"Flickr|%@",self.urlToProcess]];
+                  
+                  [self.appDelegate.uploadQueue addOperation:operation];
+                  
+              } else if (actionButton.tag==104) { //Shutterfly logo
+                  [tempPhoto updatePhoto:tempPhoto inField:@"category" toNew:@"Shutterfly" ifInt:-1];
+
+                  UploadOperation *operation = [[UploadOperation alloc] initWithPhotoData:[NSString stringWithFormat:@"Shutterfly|%@",self.urlToProcess]];
+                  
+                  if (self.appDelegate.uploadQueue == NULL) {
+                      NSLog(@"for some reao");
+                  }
+                  [self.appDelegate.uploadQueue addOperation:operation];
+                  
+              } else if (actionButton.tag==105) { //Snapfish logo
+                  [tempPhoto updatePhoto:tempPhoto inField:@"category" toNew:@"Snapfish" ifInt:-1];
+                  UploadOperation *operation = [[UploadOperation alloc] initWithPhotoData:[NSString stringWithFormat:@"Snapfish|%@",self.urlToProcess]];
+                  
+                  [self.appDelegate.uploadQueue addOperation:operation];
+                  
+              } else if (actionButton.tag==106) { //Smugmug logo
+                  [tempPhoto updatePhoto:tempPhoto inField:@"category" toNew:@"SmugMug" ifInt:-1];
+                  UploadOperation *operation = [[UploadOperation alloc] initWithPhotoData:[NSString stringWithFormat:@"SmugMug|%@",self.urlToProcess]];
+                  
+                  [self.appDelegate.uploadQueue addOperation:operation];
+            }
+        }
+        if (self.assets.count == 0) {
+            [self viewDidLoad];
+        }
+        self.buttonDisablesGestures = NO;
+        [self updateTitle];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer shouldReceiveTouch:(UITouch*)touch
+{
+    if (touch.view.tag > 98 && touch.view.tag < 107) {
+        return NO;
+    }
+        return YES;
+}
+
+//TENTATIVE - PROCESS A GESTURE RECOGNIZER ACTION
+- (IBAction)showGestureForTapRecognizer:(UITapGestureRecognizer*)recognizer
+{
+    if ((recognizer.numberOfTapsRequired == 1)) {
+        for (UIButton *button in self.view.subviews) {
+            if (button.tag > 98 && button.tag < 107) {
+                if (button.userInteractionEnabled == YES) {
+                    [UIView animateWithDuration:0.25 animations:^{
+                        button.alpha = 0.0;
+                        //button.hidden = YES;
+                        button.userInteractionEnabled = NO;
+                    }];
+                    
+                } else {
+                    [UIView animateWithDuration:0.25 animations:^{
+                        button.alpha = 0.7;
+                        button.userInteractionEnabled = YES;
+                    }];
+                }
+            }
+        }
+    }
+
+}
+
+#pragma mark Facebook Post Methods
+//FACEBOOK - ASKS FOR ADDITIONAL PUBLISH PERMISSIONS
+- (BOOL)askForPublishPermissions
+{
+    if ([[FBSession activeSession]isOpen]) {
+        /*
+         * if the current session has no publish permission we need to reauthorize
+         */
+        if ([[[FBSession activeSession]permissions]indexOfObject:@"publish_actions"] == NSNotFound) {
+            
+            [[FBSession activeSession] requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends
+                                                  completionHandler:^(FBSession *session,NSError *error){
+                                                      
+                                                  }];
+            return YES;
+            
+        }else{
+            return YES;
+        }
+    }else{
+        /*
+         * open a new session with publish permission
+         */
+        [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+                                           defaultAudience:FBSessionDefaultAudienceOnlyMe
+                                              allowLoginUI:YES
+                                         completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                             if (!error && status == FBSessionStateOpen) {
+                                                 
+                                             }else{
+                                                 NSLog(@"There was an error retrieving publish actions.");
+                                             }
+                                         }];
+        return YES;
+    }
+}
+
+
+#pragma mark ASGalleryViewController Delegate Methods
+//DONE - THE NUMBER OF TOTAL ASSETS
+- (NSUInteger)numberOfAssetsInGalleryController:(ASGalleryViewController*)controller
+{
+    return [self.assets count];
+}
+
+//DONE - PROCESS ASSET AT INDEX
+- (id<ASGalleryAsset>)galleryController:(ASGalleryViewController*)controller assetAtIndex:(NSUInteger)index
+{
+    return self.assets[index];
+}
+
+//DONE - WHAT HAPPENS WHEN THE SELECTED PHOTO INDEX CHANGES
+- (void)selectedIndexDidChangedInGalleryController:(ASGalleryViewController*)controller;
+{
+    [self updateTitle];
+}
+
+//DONE - UPDATES THE NAVIGATION BAR TITLE
+- (void)updateTitle
+{
+    if ([self.assets count]==0) {
+        self.title = @"AnyCloud";
+    } else {
+    self.title = [NSString stringWithFormat:NSLocalizedString(@"%u of %u", nil),self.selectedIndex + 1,[self.assets count]];
+    ((UILabel*)[self.view viewWithTag:2000]).text = self.title;
+    }
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self changeFrames];
+}
+
+- (void)dealloc
+{
+    [self.appDelegate.uploadQueue removeObserver:self forKeyPath:@"operationCount"];
+}
+
+- (void)assetsLibraryDidChanged
+{
+    [self reloadData];
+}
+@end

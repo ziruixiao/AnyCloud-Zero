@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aNW-5l-imP">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
+    </dependencies>
+    <scenes>
+        <!--Menu View Controller-->
+        <scene sceneID="19b-aS-w4b">
+            <objects>
+                <viewController storyboardIdentifier="menuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aNW-5l-imP" customClass="MenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ebt-2E-fdc"/>
+                        <viewControllerLayoutGuide type="bottom" id="MXq-b5-uj9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e45-Rd-YZj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KBS-Mp-sdS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="160" y="271"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ceu-SZ-1Mk">
+            <objects>
+                <navigationController storyboardIdentifier="myNavBar" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lum-nV-Tmd" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bn3-3W-g5B">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="d2C-vB-Fps" kind="relationship" relationship="rootViewController" id="MaN-i1-cey"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QzI-ox-fUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-330" y="966"/>
+        </scene>
+        <!--Default View Controller-->
+        <scene sceneID="00P-eh-I6s">
+            <objects>
+                <viewController storyboardIdentifier="defaultViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d2C-vB-Fps" customClass="DefaultViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m01-HT-qX5"/>
+                        <viewControllerLayoutGuide type="bottom" id="2ds-Ne-Rkq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T0G-0i-ojh">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c9K-Tb-Aky">
+                                <rect key="frame" x="130" y="163" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="jEX-0I-m9o"/>
+                                    <constraint firstAttribute="width" constant="60" id="m4B-TH-DPl"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAH-od-u3f">
+                                <rect key="frame" x="0.0" y="291" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="c9K-Tb-Aky" secondAttribute="centerX" id="Ff3-Cm-U4a"/>
+                            <constraint firstItem="ZAH-od-u3f" firstAttribute="top" secondItem="c9K-Tb-Aky" secondAttribute="bottom" constant="50" id="O6F-1B-RBk"/>
+                            <constraint firstAttribute="centerX" secondItem="ZAH-od-u3f" secondAttribute="centerX" id="fqw-w0-DfS"/>
+                            <constraint firstAttribute="centerY" secondItem="c9K-Tb-Aky" secondAttribute="centerY" id="xgv-A6-2bG"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="ejz-z2-NVz"/>
+                    <connections>
+                        <outlet property="loadingImageView" destination="c9K-Tb-Aky" id="cOo-qj-bp9"/>
+                        <outlet property="loadingLabel" destination="ZAH-od-u3f" id="eX2-FX-cZM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B71-13-vO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="160" y="966"/>
+        </scene>
+        <!--Modal Intro View Controller-->
+        <scene sceneID="ynu-EB-7RX">
+            <objects>
+                <viewController storyboardIdentifier="modalIntroViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wvD-Jp-Hab" customClass="ModalIntroViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ETc-zB-qyT"/>
+                        <viewControllerLayoutGuide type="bottom" id="yPu-72-eaw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XvZ-SV-Itk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView hidden="YES" userInteractionEnabled="NO" tag="154" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="facebook_access.png" translatesAutoresizingMaskIntoConstraints="NO" id="EbZ-dl-W3A">
+                                <rect key="frame" x="35" y="218" width="250" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Xcm-gl-lzs"/>
+                                    <constraint firstAttribute="height" constant="200" id="jtd-22-DvL"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="anycloud_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="SMr-Lw-PpP">
+                                <rect key="frame" x="0.0" y="20" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="F3q-uy-xmA"/>
+                                    <constraint firstAttribute="width" constant="320" id="bUJ-LI-Q2T"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="126" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="facebook_wall.png" translatesAutoresizingMaskIntoConstraints="NO" id="o0p-m2-Ddt">
+                                <rect key="frame" x="0.0" y="220" width="320" height="110"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="6kv-ca-uZx"/>
+                                    <constraint firstAttribute="width" constant="320" id="whr-bz-cPu"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" tag="444" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCi-Hg-VCF">
+                                <rect key="frame" x="60" y="413" width="200" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="47E-P0-Rg3"/>
+                                    <constraint firstAttribute="height" constant="66" id="EKQ-ks-ebv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="facebookLogin.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="authButtonAction" destination="wvD-Jp-Hab" eventType="touchUpInside" id="K8e-J8-TJC"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bc9-oB-amc">
+                                <rect key="frame" x="0.0" y="78" width="320" height="132"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="176" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Never miss a photo." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPr-jp-HY0">
+                                        <rect key="frame" x="0.0" y="55" width="320" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="151" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="AnyCloud disabled" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5X-yT-dnr">
+                                        <rect key="frame" x="0.0" y="20" width="320" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="152" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text=" Your current Facebook settings don't allow AnyCloud to work properly. Please go to Settings -> Facebook and allow access." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S6N-tn-BdO">
+                                        <rect key="frame" x="10" y="66" width="300" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="PPr-jp-HY0" secondAttribute="centerY" id="9KS-zT-69k"/>
+                                    <constraint firstAttribute="centerX" secondItem="PPr-jp-HY0" secondAttribute="centerX" id="Ltx-21-6p1"/>
+                                    <constraint firstItem="S6N-tn-BdO" firstAttribute="top" secondItem="J5X-yT-dnr" secondAttribute="bottom" constant="10" id="fzv-4n-fJ0"/>
+                                    <constraint firstAttribute="centerX" secondItem="J5X-yT-dnr" secondAttribute="centerX" id="gJs-J4-y0R"/>
+                                    <constraint firstItem="J5X-yT-dnr" firstAttribute="top" secondItem="bc9-oB-amc" secondAttribute="top" constant="20" id="uK7-Eo-iCW"/>
+                                    <constraint firstAttribute="centerX" secondItem="S6N-tn-BdO" secondAttribute="centerX" id="yJb-Hm-rts"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rf9-wy-vJY">
+                                <rect key="frame" x="0.0" y="332" width="320" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="177" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Click the button below to begin." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvf-VX-dER">
+                                        <rect key="frame" x="0.0" y="25" width="320" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="qvf-VX-dER" secondAttribute="centerY" id="Q5e-pt-xMm"/>
+                                    <constraint firstAttribute="centerX" secondItem="qvf-VX-dER" secondAttribute="centerX" id="kvL-J6-0Wx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bc9-oB-amc" firstAttribute="leading" secondItem="XvZ-SV-Itk" secondAttribute="leading" id="1cd-mN-MxF"/>
+                            <constraint firstItem="rf9-wy-vJY" firstAttribute="top" secondItem="o0p-m2-Ddt" secondAttribute="bottom" id="413-gu-xFp"/>
+                            <constraint firstAttribute="trailing" secondItem="EbZ-dl-W3A" secondAttribute="trailing" constant="35" id="4Ui-6o-53X"/>
+                            <constraint firstItem="bc9-oB-amc" firstAttribute="top" secondItem="SMr-Lw-PpP" secondAttribute="bottom" id="FZW-H7-xk7"/>
+                            <constraint firstItem="o0p-m2-Ddt" firstAttribute="top" secondItem="bc9-oB-amc" secondAttribute="bottom" id="Fnv-4h-2fu"/>
+                            <constraint firstAttribute="centerX" secondItem="gCi-Hg-VCF" secondAttribute="centerX" id="HdX-ZA-81v"/>
+                            <constraint firstItem="EbZ-dl-W3A" firstAttribute="top" secondItem="bc9-oB-amc" secondAttribute="bottom" id="TQf-WX-tvN"/>
+                            <constraint firstItem="rf9-wy-vJY" firstAttribute="leading" secondItem="XvZ-SV-Itk" secondAttribute="leading" id="Xl6-LM-zpy"/>
+                            <constraint firstItem="bc9-oB-amc" firstAttribute="leading" secondItem="XvZ-SV-Itk" secondAttribute="leading" id="Z2Z-Vg-rlJ"/>
+                            <constraint firstAttribute="centerY" secondItem="o0p-m2-Ddt" secondAttribute="centerY" id="ZRj-Pf-DCB"/>
+                            <constraint firstItem="rf9-wy-vJY" firstAttribute="trailing" secondItem="XvZ-SV-Itk" secondAttribute="trailing" id="gKJ-PX-b1a"/>
+                            <constraint firstAttribute="centerX" secondItem="SMr-Lw-PpP" secondAttribute="centerX" id="snK-hk-S4p"/>
+                            <constraint firstItem="gCi-Hg-VCF" firstAttribute="top" secondItem="rf9-wy-vJY" secondAttribute="bottom" id="t5t-4Y-N2m"/>
+                            <constraint firstAttribute="centerX" secondItem="o0p-m2-Ddt" secondAttribute="centerX" id="vuC-5u-vDk"/>
+                            <constraint firstItem="yPu-72-eaw" firstAttribute="top" secondItem="gCi-Hg-VCF" secondAttribute="bottom" constant="10" id="zOT-Bj-ema"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="introImageView" destination="o0p-m2-Ddt" id="apw-4V-pdt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6aq-VE-77p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="639" y="966"/>
+        </scene>
+        <!--Left View Controller-->
+        <scene sceneID="0dI-zf-s6q">
+            <objects>
+                <tableViewController storyboardIdentifier="leftViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aar-aL-dn6" customClass="LeftViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SbK-YH-akC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="iIn-bq-Gpm" detailTextLabel="e9l-ac-mZq" style="IBUITableViewCellStyleValue1" id="tc9-52-9YI">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tc9-52-9YI" id="Op6-TX-mKu">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iIn-bq-Gpm">
+                                            <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e9l-ac-mZq">
+                                            <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aar-aL-dn6" id="DXG-B9-CRf"/>
+                            <outlet property="delegate" destination="aar-aL-dn6" id="Tzb-fq-VSd"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Czw-Ty-5WJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-330" y="271"/>
+        </scene>
+        <!--Default View Controller-->
+        <scene sceneID="zdY-5s-SSD">
+            <objects>
+                <viewController storyboardIdentifier="rightViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XQ8-Xq-fls" customClass="DefaultViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yKb-LI-nz4"/>
+                        <viewControllerLayoutGuide type="bottom" id="egd-ts-Sfc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V6S-g0-W97">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IyS-OQ-gDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="639" y="271"/>
+        </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="kVv-Nl-pvF">
+            <objects>
+                <viewController storyboardIdentifier="tutorialViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2m4-Jb-qdd" customClass="TutorialViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DdM-a5-d89"/>
+                        <viewControllerLayoutGuide type="bottom" id="7v1-5P-W3B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LsS-hH-ckg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EpO-Kp-AyM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to AnyCloud" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9g-tK-Wa4">
+                                        <rect key="frame" x="51" y="40" width="219" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="View and manage your photos like never before." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmP-CF-Q6F">
+                                        <rect key="frame" x="0.0" y="69" width="320" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="anycloud_wireframe.png" translatesAutoresizingMaskIntoConstraints="NO" id="3dO-7B-tRK">
+                                        <rect key="frame" x="13" y="98" width="294" height="531"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="00y-Ou-hRa">
+                                        <rect key="frame" x="43" y="217" width="238" height="326"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="view1" destination="LsS-hH-ckg" id="6NR-eq-Kqq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RBa-H3-Fs8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="271"/>
+        </scene>
+        <!--Error View Controller-->
+        <scene sceneID="EUa-FI-kTy">
+            <objects>
+                <viewController storyboardIdentifier="photoErrorViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hg0-5l-qEJ" customClass="ErrorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JIP-uO-rGk"/>
+                        <viewControllerLayoutGuide type="bottom" id="czS-eE-R0I"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pRn-ef-tHw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="anycloud_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="qfc-vJ-atf">
+                                <rect key="frame" x="0.0" y="20" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="151" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AnyCloud disabled" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZU9-FN-RrG">
+                                <rect key="frame" x="0.0" y="93" width="320" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="152" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" Your current photo settings don't allow AnyCloud to work properly. Please go to Settings -> Privacy and allow access." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="2la-28-5yd">
+                                <rect key="frame" x="10" y="126" width="300" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" tag="154" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo_access.png" translatesAutoresizingMaskIntoConstraints="NO" id="lsK-kM-ghz">
+                                <rect key="frame" x="35" y="200" width="250" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XT-hV-oOh">
+                                <rect key="frame" x="124" y="408" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Try Again">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tryAgain:" destination="hg0-5l-qEJ" eventType="touchUpInside" id="4Q5-ix-Et0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X17-KT-dVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="966"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="anycloud_logo.png" width="640" height="100"/>
+        <image name="anycloud_wireframe.png" width="640" height="1000.0693969726562"/>
+        <image name="facebookLogin.png" width="200" height="44"/>
+        <image name="facebook_access.png" width="500" height="400"/>
+        <image name="facebook_wall.png" width="640" height="200"/>
+        <image name="photo_access.png" width="500" height="400"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

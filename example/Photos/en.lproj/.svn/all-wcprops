@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/acz/!svn/ver/75/trunk/ACZ/example/Photos/en.lproj
+END
+InfoPlist.strings
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/acz/!svn/ver/64/trunk/ACZ/example/Photos/en.lproj/InfoPlist.strings
+END
+MainStoryboard_iPad.storyboard
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/en.lproj/MainStoryboard_iPad.storyboard
+END
+MainStoryboard_iPhone.storyboard
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/acz/!svn/ver/131/trunk/ACZ/example/Photos/en.lproj/MainStoryboard_iPhone.storyboard
+END

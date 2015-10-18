@@ -1,0 +1,251 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders
+END
+FBOpenGraphAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBOpenGraphAction.h
+END
+FBSessionManualTokenCachingStrategy.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSessionManualTokenCachingStrategy.h
+END
+FBProfilePictureView.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBProfilePictureView.h
+END
+FBOpenGraphActionShareDialogParams.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBOpenGraphActionShareDialogParams.h
+END
+FBInsights.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBInsights.h
+END
+FBAppLinkData.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBAppLinkData.h
+END
+FBError.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBError.h
+END
+FBGraphLocation.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphLocation.h
+END
+FBFrictionlessRecipientCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBFrictionlessRecipientCache.h
+END
+FBAccessTokenData.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBAccessTokenData.h
+END
+FBFrictionlessRequestSettings.h
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBFrictionlessRequestSettings.h
+END
+FBUserSettingsViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBUserSettingsViewController.h
+END
+FBSettings.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSettings.h
+END
+FBLoginView.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLoginView.h
+END
+FacebookSDK.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FacebookSDK.h
+END
+FBFriendPickerViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBFriendPickerViewController.h
+END
+FBGraphPlace.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphPlace.h
+END
+FBRequestConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBRequestConnection.h
+END
+FBAppCall.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBAppCall.h
+END
+FBDialogsData.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialogsData.h
+END
+FBWebDialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBWebDialogs.h
+END
+FBPlacePickerViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBPlacePickerViewController.h
+END
+FBDialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialogs.h
+END
+FBSession.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSession.h
+END
+FBTestSession.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBTestSession.h
+END
+FBSessionTokenCachingStrategy.h
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSessionTokenCachingStrategy.h
+END
+FBDialogsParams.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialogsParams.h
+END
+FBShareDialogParams.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBShareDialogParams.h
+END
+FBRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBRequest.h
+END
+FBLoginDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLoginDialog.h
+END
+FBGraphObject.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphObject.h
+END
+FBNativeDialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBNativeDialogs.h
+END
+FBConnect.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBConnect.h
+END
+FBDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialog.h
+END
+FBGraphUser.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphUser.h
+END
+Facebook.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/Facebook.h
+END
+FBCacheDescriptor.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBCacheDescriptor.h
+END
+FBOpenGraphObject.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBOpenGraphObject.h
+END
+FBErrorUtility.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBErrorUtility.h
+END
+FBViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBViewController.h
+END
+NSError+FBError.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/acz/!svn/ver/72/trunk/ACZ/example/Photos/FacebookSDK.framework/Versions/A/DeprecatedHeaders/NSError+FBError.h
+END
